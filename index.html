@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Source Booksellers | Independent Non-Fiction Bookstore in Detroit</title>
+<meta name="description" content="Source Booksellers is an independent bookstore in Midtown Detroit offering a unique niche of non-fiction books. Visit us on Cass Avenue or pre-order new releases.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf5ec;
+    --surface: #ffffff;
+    --surface-alt: #f3ebdd;
+    --ink: #241f1a;
+    --ink-soft: #5c5349;
+    --ink-faint: #8a7f72;
+    --line: #e4d8c5;
+    --accent: #a8431f;
+    --accent-dark: #7f3014;
+    --accent-soft: #f2dccf;
+    --gold: #b8842a;
+    --green: #2f5347;
+    --radius-sm: 8px;
+    --radius: 16px;
+    --radius-lg: 26px;
+    --shadow-sm: 0 1px 2px rgba(36, 31, 26, 0.06), 0 2px 8px rgba(36, 31, 26, 0.05);
+    --shadow: 0 10px 30px rgba(36, 31, 26, 0.10);
+    --shadow-lg: 0 24px 60px rgba(36, 31, 26, 0.16);
+    --maxw: 1140px;
+    --font-head: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 600; line-height: 1.12; color: var(--ink); letter-spacing: -0.01em; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 14px 26px;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px rgba(168, 67, 31, 0.28); }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(168, 67, 31, 0.34); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn-light { background: #fff; color: var(--accent); }
+  .btn-light:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  /* NAV */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 245, 236, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand-mark {
+    width: 42px; height: 42px; border-radius: 11px;
+    background: linear-gradient(145deg, var(--accent), var(--accent-dark));
+    display: grid; place-items: center;
+    color: #fff; font-family: var(--font-head); font-weight: 700; font-size: 1.3rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    flex-shrink: 0;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+  .brand-name { font-family: var(--font-head); font-weight: 700; font-size: 1.22rem; color: var(--ink); }
+  .brand-sub { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); transition: color 0.16s ease; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { display: flex; align-items: center; gap: 14px; }
+
+  /* HERO */
+  .hero { position: relative; padding: 90px 0 84px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 5.4vw, 4.2rem); font-weight: 600; margin-bottom: 22px; }
+  .hero h1 .em { color: var(--accent); font-style: italic; }
+  .hero p.lead { font-size: 1.22rem; color: var(--ink-soft); max-width: 30em; margin-bottom: 32px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 30px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 0.92rem; color: var(--ink-soft); }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+  .shelf {
+    background: linear-gradient(160deg, var(--surface-alt), #efe3cf);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 34px 30px 26px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .shelf-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 20px; }
+  .spines { display: flex; align-items: flex-end; gap: 9px; height: 230px; }
+  .spine { flex: 1; border-radius: 6px 6px 3px 3px; position: relative; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), var(--shadow-sm); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; }
+  .spine span { writing-mode: vertical-rl; transform: rotate(180deg); color: rgba(255,255,255,0.92); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.05em; font-family: var(--font-body); }
+  .spine-plank { height: 12px; background: linear-gradient(#caa96f, #a9834d); border-radius: 4px; margin-top: 10px; box-shadow: var(--shadow-sm); }
+
+  /* SECTIONS */
+  section { padding: 84px 0; }
+  .section-head { max-width: 46em; margin-bottom: 44px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); margin-bottom: 16px; }
+  .section-head p { font-size: 1.1rem; color: var(--ink-soft); }
+
+  .alt-bg { background: var(--surface-alt); }
+
+  /* VALUE / WHY */
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .ic {
+    width: 52px; height: 52px; border-radius: 13px;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; margin-bottom: 20px;
+  }
+  .card h3 { font-size: 1.28rem; margin-bottom: 10px; }
+  .card p { color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 54px; align-items: center; }
+  .about-visual {
+    border-radius: var(--radius-lg);
+    background: linear-gradient(150deg, var(--green), #1f3a31);
+    min-height: 360px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    display: grid; place-items: center;
+    padding: 40px;
+  }
+  .about-visual .quote { color: #f3ebdd; font-family: var(--font-head); font-style: italic; font-size: 1.7rem; line-height: 1.3; text-align: center; max-width: 16em; }
+  .about-visual .quote small { display: block; font-family: var(--font-body); font-style: normal; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,235,221,0.65); margin-top: 18px; font-weight: 600; }
+  .about-deco { position: absolute; inset: 0; opacity: 0.16; }
+  .about-text h2 { font-size: clamp(2rem, 3.4vw, 2.7rem); margin-bottom: 18px; }
+  .about-text p { color: var(--ink-soft); font-size: 1.06rem; margin-bottom: 16px; }
+  .fact-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+  .fact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; flex: 1; min-width: 150px; box-shadow: var(--shadow-sm); }
+  .fact .big { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; color: var(--accent); line-height: 1; }
+  .fact .lbl { font-size: 0.86rem; color: var(--ink-soft); margin-top: 7px; }
+
+  /* PRE-ORDERS */
+  .books { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .book { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; }
+  .book:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .cover { aspect-ratio: 3 / 4; display: grid; place-items: center; padding: 26px; position: relative; }
+  .cover .ctitle { font-family: var(--font-head); color: #fff; font-weight: 600; font-size: 1.3rem; text-align: center; line-height: 1.18; text-shadow: 0 1px 10px rgba(0,0,0,0.25); }
+  .cover .cband { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.92); color: var(--ink); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
+  .cover .cedge { position: absolute; top: 0; bottom: 0; left: 0; width: 10px; background: rgba(0,0,0,0.16); }
+  .book-body { padding: 22px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+  .book-body h3 { font-size: 1.16rem; margin-bottom: 6px; }
+  .book-body .rel { font-size: 0.9rem; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 7px; margin-bottom: 18px; }
+  .book-body .rel b { color: var(--accent); font-weight: 600; }
+  .book-body .btn { margin-top: auto; width: 100%; justify-content: center; }
+
+  /* EVENTS */
+  .events { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .event { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 28px; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .event:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .date-chip { background: var(--accent-soft); border-radius: 14px; text-align: center; padding: 14px 10px; }
+  .date-chip .mo { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .date-chip .day { font-family: var(--font-head); font-weight: 700; font-size: 2.1rem; color: var(--ink); line-height: 1; margin-top: 3px; }
+  .event h3 { font-size: 1.24rem; margin-bottom: 6px; }
+  .event p { color: var(--ink-soft); font-size: 0.96rem; }
+  .event .time { color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-top: 8px; display: inline-block; }
+
+  /* NEWSLETTER */
+  .news-band { background: linear-gradient(145deg, var(--accent), var(--accent-dark)); border-radius: var(--radius-lg); padding: 54px 48px; color: #fff; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 44px; align-items: center; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+  .news-band h2 { color: #fff; font-size: clamp(1.9rem, 3.2vw, 2.5rem); margin-bottom: 14px; }
+  .news-band p { color: rgba(255,255,255,0.9); font-size: 1.05rem; }
+  .news-form { display: flex; flex-direction: column; gap: 12px; }
+  .news-row { display: flex; gap: 12px; }
+  .news-form input {
+    flex: 1; min-width: 0; font-family: var(--font-body); font-size: 1rem;
+    padding: 15px 18px; border-radius: 999px; border: none; outline: none;
+    background: rgba(255,255,255,0.96); color: var(--ink);
+  }
+  .news-form input::placeholder { color: var(--ink-faint); }
+  .news-form input:focus { box-shadow: 0 0 0 3px rgba(255,255,255,0.45); }
+  .news-note { font-size: 0.86rem; color: rgba(255,255,255,0.82); display: inline-flex; align-items: center; gap: 8px; }
+  .news-deco { position: absolute; right: -40px; top: -40px; opacity: 0.14; pointer-events: none; }
+
+  /* VISIT */
+  .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
+  .visit-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 22px; margin-top: 8px; }
+  .info-list li { display: grid; grid-template-columns: 46px 1fr; gap: 16px; align-items: start; }
+  .info-list .ic-sm { width: 46px; height: 46px; border-radius: 12px; background: var(--surface-alt); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
+  .info-list .k { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; margin-bottom: 3px; }
+  .info-list .v { color: var(--ink); font-weight: 500; }
+  .info-list .v span { display: block; color: var(--ink-soft); font-weight: 400; font-size: 0.96rem; }
+  .map {
+    border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line);
+    background: linear-gradient(135deg, #e9ddc8, #f3ebdd); position: relative; min-height: 360px;
+    box-shadow: var(--shadow-sm); display: flex; align-items: flex-end; padding: 0;
+  }
+  .map .pin { position: absolute; top: 46%; left: 50%; transform: translate(-50%, -100%); }
+  .map .mapcard { background: var(--surface); margin: 20px; padding: 16px 20px; border-radius: 14px; box-shadow: var(--shadow); position: relative; z-index: 2; }
+  .map .mapcard b { display: block; font-family: var(--font-head); font-size: 1.05rem; }
+  .map .mapcard span { font-size: 0.9rem; color: var(--ink-soft); }
+  .maproads { position: absolute; inset: 0; opacity: 0.5; }
+
+  /* FOOTER */
+  footer.site { background: var(--ink); color: #d9cfc2; padding: 70px 0 34px; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  footer.site .brand-name { color: #fff; }
+  footer.site .brand-sub { color: rgba(255,255,255,0.55); }
+  .foot-about { color: #b8ac9c; font-size: 0.96rem; margin-top: 18px; max-width: 26em; }
+  .foot-col h4 { color: #fff; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; font-family: var(--font-body); font-weight: 700; }
+  .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .foot-col a, .foot-col li { color: #b8ac9c; font-size: 0.95rem; transition: color 0.16s ease; }
+  .foot-col a:hover { color: #fff; }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 26px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; }
+  .foot-bottom p { color: #8f8475; font-size: 0.88rem; }
+  .foot-bottom .tag { color: #8f8475; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .hero-grid, .about-grid, .visit-grid, .news-band { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 60px; }
+    .shelf { max-width: 460px; }
+    .cards-3, .books, .events { grid-template-columns: 1fr 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
+    .news-deco { display: none; }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    section { padding: 60px 0; }
+  }
+  @media (max-width: 560px) {
+    .cards-3, .books, .events { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .news-band, .visit-card { padding: 30px 24px; }
+    .event { grid-template-columns: 76px 1fr; gap: 16px; padding: 20px; }
+    .brand-sub { display: none; }
+    .hero h1 { font-size: 2.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Source Booksellers home">
+      <span class="brand-mark">S</span>
+      <span class="brand-text">
+        <span class="brand-name">Source Booksellers</span>
+        <span class="brand-sub">Detroit, Michigan</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#preorders">Pre-orders</a>
+      <a href="#events">Events</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#preorders">Shop Pre-orders</a>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Independent bookstore in Midtown Detroit</span>
+      <h1>A unique niche of <span class="em">non-fiction</span> books.</h1>
+      <p class="lead">Source Booksellers is making the literary arts visible on Cass Avenue. Come browse a carefully curated shelf, meet an author, or reserve the next release.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#visit">Visit the Store</a>
+        <a class="btn btn-ghost" href="#preorders">Browse Pre-orders</a>
+      </div>
+      <div class="hero-meta">
+        <span><span class="dot"></span>Open 7 days a week</span>
+        <span><span class="dot"></span>4240 Cass Ave, Detroit</span>
+        <span><span class="dot"></span>In-store author events</span>
+      </div>
+    </div>
+    <div class="shelf" aria-hidden="true">
+      <div class="shelf-label">On our shelves this week</div>
+      <div class="spines">
+        <div class="spine" style="background:linear-gradient(#a8431f,#7f3014); height:92%;"><span>History</span></div>
+        <div class="spine" style="background:linear-gradient(#2f5347,#1f3a31); height:100%;"><span>Culture</span></div>
+        <div class="spine" style="background:linear-gradient(#b8842a,#8f6414); height:84%;"><span>Memoir</span></div>
+        <div class="spine" style="background:linear-gradient(#4a4036,#2c251d); height:96%;"><span>Wellbeing</span></div>
+        <div class="spine" style="background:linear-gradient(#8a3d5a,#652840); height:88%;"><span>Poetry</span></div>
+        <div class="spine" style="background:linear-gradient(#35607a,#223f52); height:100%;"><span>Ideas</span></div>
+        <div class="spine" style="background:linear-gradient(#a8431f,#7f3014); height:80%;"><span>Travel</span></div>
+      </div>
+      <div class="spine-plank"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY / VALUE -->
+<section class="alt-bg" id="offer">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Why readers come back</span>
+      <h2>A bookstore built around what we love</h2>
+      <p>We keep a focused, hand-selected collection of non-fiction and host the people and ideas behind the books.</p>
+    </div>
+    <div class="cards-3">
+      <div class="card">
+        <div class="ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Curated non-fiction</h3>
+        <p>A unique niche of non-fiction chosen with care across history, culture, wellbeing, and ideas. Smaller shelf, better reads.</p>
+      </div>
+      <div class="card">
+        <div class="ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Authors in the room</h3>
+        <p>Readings, signings, and conversations happen here regularly. Meet the writers whose work is on the table.</p>
+      </div>
+      <div class="card">
+        <div class="ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Rooted in Detroit</h3>
+        <p>An independent shop in the heart of Midtown. Walk in, take your time, and find your next book on Cass Avenue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual">
+      <svg class="about-deco" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g stroke="#f3ebdd" stroke-width="2">
+          <rect x="40" y="60" width="60" height="280" rx="4"/>
+          <rect x="110" y="40" width="54" height="300" rx="4"/>
+          <rect x="174" y="80" width="64" height="260" rx="4"/>
+          <rect x="248" y="50" width="48" height="290" rx="4"/>
+          <rect x="306" y="90" width="58" height="250" rx="4"/>
+        </g>
+      </svg>
+      <p class="quote">Making the literary arts visible.<small>The Source Booksellers promise</small></p>
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">About the store</span>
+      <h2>A small shop with a big point of view</h2>
+      <p>Source Booksellers is an independent bookstore devoted to a unique niche of non-fiction. We believe a focused collection, chosen by people who actually read it, is worth more than endless aisles.</p>
+      <p>You will find us at 4240 Cass Avenue in Midtown Detroit, open seven days a week, with new titles, pre-orders, and author events on the calendar all year.</p>
+      <div class="fact-row">
+        <div class="fact"><div class="big">7 days</div><div class="lbl">Open every week</div></div>
+        <div class="fact"><div class="big">Detroit</div><div class="lbl">Midtown, Cass Ave</div></div>
+        <div class="fact"><div class="big">Non-fiction</div><div class="lbl">Our specialty</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRE-ORDERS -->
+<section class="alt-bg" id="preorders">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">New and coming soon</span>
+      <h2>Pre-order the 2026 releases</h2>
+      <p>Reserve your copy now and pick it up the week it lands. Stop by the store or call us to hold any title below.</p>
+    </div>
+    <div class="books">
+      <div class="book">
+        <div class="cover" style="background:linear-gradient(150deg,#7f3014,#a8431f);">
+          <span class="cedge"></span>
+          <span class="cband">Pre-order</span>
+          <span class="ctitle">Framing Emmett Till</span>
+        </div>
+        <div class="book-body">
+          <h3>Framing Emmett Till</h3>
+          <div class="rel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Available <b>October 27, 2026</b></div>
+          <a class="btn btn-ghost" href="#visit">Reserve a copy</a>
+        </div>
+      </div>
+      <div class="book">
+        <div class="cover" style="background:linear-gradient(150deg,#2f5347,#1f3a31);">
+          <span class="cedge"></span>
+          <span class="cband">Pre-order</span>
+          <span class="ctitle">Take My Word for It</span>
+        </div>
+        <div class="book-body">
+          <h3>Take My Word for It</h3>
+          <div class="rel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Available <b>November 10, 2026</b></div>
+          <a class="btn btn-ghost" href="#visit">Reserve a copy</a>
+        </div>
+      </div>
+      <div class="book">
+        <div class="cover" style="background:linear-gradient(150deg,#35607a,#223f52);">
+          <span class="cedge"></span>
+          <span class="cband">Pre-order</span>
+          <span class="ctitle">Wells Without Water</span>
+        </div>
+        <div class="book-body">
+          <h3>Wells Without Water</h3>
+          <div class="rel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Available <b>February 9, 2027</b></div>
+          <a class="btn btn-ghost" href="#visit">Reserve a copy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What is happening</span>
+      <h2>Events at Source Booksellers</h2>
+      <p>Readings, author visits, and reading journeys hosted in and around the store. Seats are limited, so reserve early.</p>
+    </div>
+    <div class="events">
+      <div class="event">
+        <div class="date-chip"><div class="mo">Oct</div><div class="day">14</div></div>
+        <div>
+          <h3>An Evening with Deesha Philyaw</h3>
+          <p>An in-store conversation and reading with the author.</p>
+          <span class="time">6:00 pm at the store</span>
+        </div>
+      </div>
+      <div class="event">
+        <div class="date-chip"><div class="mo">Oct</div><div class="day">30</div></div>
+        <div>
+          <h3>Bibliophile Journey</h3>
+          <p>A guided reading getaway with fellow book lovers, October 30 to November 2.</p>
+          <span class="time">Reserve your spot in store</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER (fixed) -->
+<section class="alt-bg">
+  <div class="wrap">
+    <div class="news-band">
+      <svg class="news-deco" width="240" height="240" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <div>
+        <h2>Stay in the loop</h2>
+        <p>Get new arrivals, pre-order alerts, and event invitations in your inbox. One short note, no clutter.</p>
+      </div>
+      <form class="news-form" onsubmit="return false" aria-label="Newsletter signup">
+        <div class="news-row">
+          <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required>
+          <button type="submit" class="btn btn-light">Sign Up</button>
+        </div>
+        <span class="news-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          We respect your privacy.
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Come see us</span>
+      <h2>Visit the store</h2>
+      <p>We are on Cass Avenue in Midtown Detroit. Walk in during open hours or call ahead to hold a book.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-card">
+        <ul class="info-list">
+          <li>
+            <span class="ic-sm" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><div class="k">Address</div><div class="v">4240 Cass Ave, Suite 105<span>Detroit, MI 48201</span></div></div>
+          </li>
+          <li>
+            <span class="ic-sm" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div><div class="k">Call us</div><div class="v"><a href="tel:+13138321155">(313) 832-1155</a><span>Hold a title or ask about an event</span></div></div>
+          </li>
+          <li>
+            <span class="ic-sm" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <div><div class="k">Hours</div><div class="v">Open seven days<span>Mon to Wed, 11am to 5pm</span><span>Thu to Sat, 11am to 7pm</span><span>Sun, 12pm to 4pm</span></div></div>
+          </li>
+        </ul>
+      </div>
+      <div class="map" aria-label="Map showing the store location in Midtown Detroit">
+        <svg class="maproads" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="400" height="400" fill="#e9ddc8"/>
+          <path d="M0 120 H400 M0 250 H400 M90 0 V400 M260 0 V400" stroke="#d6c6a6" stroke-width="10"/>
+          <path d="M0 60 H400 M0 330 H400 M170 0 V400 M340 0 V400" stroke="#ded0b4" stroke-width="5"/>
+          <rect x="100" y="130" width="60" height="50" fill="#d8c8a8"/>
+          <rect x="275" y="260" width="55" height="48" fill="#d8c8a8"/>
+          <rect x="30" y="265" width="48" height="52" fill="#d8c8a8"/>
+        </svg>
+        <span class="pin" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#a8431f" stroke="#fff" stroke-width="1.4"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.6" fill="#fff" stroke="none"/></svg>
+        </span>
+        <div class="mapcard"><b>Source Booksellers</b><span>4240 Cass Ave, Midtown Detroit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark">S</span>
+          <span class="brand-text">
+            <span class="brand-name">Source Booksellers</span>
+            <span class="brand-sub">Detroit, Michigan</span>
+          </span>
+        </a>
+        <p class="foot-about">An independent bookstore offering a unique niche of non-fiction books, making the literary arts visible in Midtown Detroit.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#preorders">Pre-orders</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#offer">What we offer</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <ul>
+          <li>4240 Cass Ave, Suite 105</li>
+          <li>Detroit, MI 48201</li>
+          <li><a href="tel:+13138321155">(313) 832-1155</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon to Wed, 11am to 5pm</li>
+          <li>Thu to Sat, 11am to 7pm</li>
+          <li>Sun, 12pm to 4pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 Source Booksellers. All rights reserved.</p>
+      <span class="tag">Independent bookstore in Midtown Detroit</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
